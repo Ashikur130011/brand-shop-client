@@ -29,7 +29,8 @@ const Header = () => {
     setTexts(newTexts);
   };
     return (
-        <div className="carousel">
+        <div>
+            <div className="carousel">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -45,7 +46,10 @@ const Header = () => {
           </div>
         </div>
       ))}
+      
     </div>
+    
+        </div>
     );
 };
 
