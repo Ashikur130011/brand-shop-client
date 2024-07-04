@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
+    const {user, logOut} = useContext(AuthContext)
+        console.log(user)
+
+    //log out 
+    const handleLogout = () => {
+        logOut()
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Log-Out Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        
+    }
+
     const navLinks = <>
-        <li><NavLink to="/login" className="mx-2">Login</NavLink></li>
-        <li><NavLink to="/products" className="mx-2">Fetaured Products</NavLink></li>
+        <li><NavLink to="/" className="mx-2 text-base">Home</NavLink></li>
+        <li><NavLink to="/products" className="mx-2 font-bold text-base">Fetaured Products</NavLink></li>
     </>
     return (
         <div className="navbar bg-primary text-primary-content">
@@ -31,7 +49,7 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a href='/' className="btn btn-ghost text-xl font-serif"><span className='text-bold font-serif text-red-700'>Brand</span> Shop</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -39,7 +57,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ? <>
+                    <p>{user.email}</p>
+                    <button onClick={handleLogout} className="btn btn-error mx-2">Log Out</button>
+                    </>:
+                    <NavLink className='mx-2' to='/login'>Login</NavLink>
+                }
             </div>
         </div>
     );
