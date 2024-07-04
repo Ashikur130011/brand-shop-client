@@ -23,7 +23,9 @@ const Navbar = () => {
 
     const navLinks = <>
         <li><NavLink to="/" className="mx-2 text-base">Home</NavLink></li>
-        <li><NavLink to="/products" className="mx-2 font-bold text-base">Fetaured Products</NavLink></li>
+        <li><NavLink to="/products" className="mx-2 text-base">Fetaured Products</NavLink></li>
+        <li><NavLink to="/about" className="mx-2 text-base">About</NavLink></li>
+        <li><NavLink to="/contact" className="mx-2 text-base">Contact</NavLink></li>
     </>
     return (
         <div className="navbar bg-primary text-primary-content">
@@ -59,10 +61,10 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ? <>
-                    <p>{user.email}</p>
+                    <p className='hidden md:block'>{user.email}</p>
                     <button onClick={handleLogout} className="btn btn-error mx-2">Log Out</button>
                     </>:
-                    <NavLink className='mx-2' to='/login'>Login</NavLink>
+                    <NavLink className='mx-2 btn btn-success' to='/login'>Login</NavLink>
                 }
             </div>
         </div>
