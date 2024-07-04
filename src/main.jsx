@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import './index.css'
-import Home from './Component/Home/Home.jsx';
-import Login from './Component/Auth/Login/Login.jsx';
-import Register from './Component/Auth/Register/Register.jsx';
-import Products from './Component/Products/Products.jsx';
-import Root from './Component/Root/Root.jsx';
+import Root from './Components/Root/Root.jsx';
+import Home from './Components/Home/Home.jsx';
+import Login from './Components/Auth/Login/Login.jsx';
+import Register from './Components/Auth/Register/Register.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -18,24 +18,21 @@ const router = createBrowserRouter([
     element: <Root/>,
     children: [
       {
-        path: "/",
-        element: <Home />,
+        path: "/home",
+        element: <Home/>,
       },
       {
         path: "/login",
-        element: <Login />,
+        element: <Login/>
       },
       {
         path: "/register",
         element: <Register/>
-      },
-      {
-        path:"/products",
-        element: <Products/>
       }
     ],
   },
 ]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
