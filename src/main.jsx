@@ -14,16 +14,21 @@ import AuthProvider from './Components/providers/AuthProvider.jsx';
 import Products from './Components/Products/Products.jsx';
 import About from './Components/About/About.jsx';
 import Contact from './Components/Contact/Contact.jsx';
+import ErrorPage from './Components/ErrorPage.jsx';
+import AddProducts from './Components/AddProducts/AddProducts.jsx';
+import Details from './Components/Details/Details.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
         element: <Home/>,
+        loader: () => fetch('http://localhost:5000/gadget')
       },
       {
         path: "/login",
@@ -35,7 +40,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/products',
-        element: <Products/>
+        element: <Products/>,
+        loader: () => fetch('http://localhost:5000/gadget')
+      },
+      {
+        path: '/details/:id',
+        element: <Details/>,
+        loader: ({params}) => fetch(`http://localhost:5000/gadget/${params.id}`)
       },
       {
         path: "/about",
@@ -44,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact/>
+      },
+      {
+        path: '/addProducts',
+        element: <AddProducts/>
       }
     ],
   },
